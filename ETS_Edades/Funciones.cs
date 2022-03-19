@@ -8,6 +8,10 @@ namespace ETS_Edades
 {
     class Funciones
     {
+        /// <summary>
+        /// Función para obetenr una fecha de nacimiento válida(Después de cristo)
+        /// </summary>
+        /// <returns>Devuelve una fecha válida introducida por teclado</returns>
         public static DateTime LeerFechaNacimiento()
         {
             DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
@@ -36,7 +40,12 @@ namespace ETS_Edades
             } while (!leer);
             return fechaNacimiento;
         }
-
+        /// <summary>
+        /// Función para devolver por referencia los años y días de la fecha
+        /// </summary>
+        /// <param name="fechaNacimiento">fecha de la persona</param>
+        /// <param name="dias">Días que tiene</param>
+        /// <param name="anios">Edad actual</param>
         public static void ObtenerDiasYAnios(DateTime fechaNacimiento,ref double dias,ref double anios)
         {
             DateTime fechaActual = DateTime.Now;
