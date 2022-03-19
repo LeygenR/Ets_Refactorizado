@@ -6,7 +6,12 @@ namespace ETS_Edades
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DateTime FechaPersona1 = Funciones.LeerFechaNacimiento();
+            double dias = 0;
+            double anios = 0;
+            Funciones.ObtenerDiasYAnios(FechaPersona1,ref dias,ref anios);
+            Console.WriteLine("La fecha {0} tiene {1} dias y {2} años",FechaPersona1,Math.Floor(dias),anios);
+            Console.Read();
         }
     }
 }
