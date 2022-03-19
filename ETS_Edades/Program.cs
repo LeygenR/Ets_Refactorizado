@@ -12,7 +12,6 @@ namespace ETS_Edades
             Funciones.ObtenerDiasYAnios(FechaPersona1,ref dias,ref anios);
             Console.WriteLine("La fecha {0} tiene {1} dias y {2} años",FechaPersona1,Math.Floor(dias),anios);
             Console.Read();
-            Console.WriteLine("Hola de prueba");
         }
     }
 }
