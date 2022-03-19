@@ -14,7 +14,7 @@ namespace ETS_Edades
             bool leer = false;//booleano para salir solo cuando lea una fecha válida
             do
             {
-                Console.WriteLine("Introduzca la fecha de la persona en el formato correcto(dd/MM/yyyy)");
+                Console.WriteLine("Introduzca la fecha de la persona en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/2001)");
                 try
                 {
                     fechaNacimiento = DateTime.ParseExact(Console.ReadLine().Trim(), "dd/MM/yyyy", null);//En caso de error en la conversión del parse sale la excepción del catch
@@ -43,7 +43,6 @@ namespace ETS_Edades
             TimeSpan resta = fechaActual - fechaNacimiento;//Creo un Timespan que calcula un periodo de tiempo en nanosegundos(100)
             dias = resta.TotalDays;//uso la función que devulve los nanosegundos en días totales(como son exactos debe ser double la variable dias y luego hacer un Math.Floor al valor)
             anios = Math.Floor(dias / 365);//aquí lo divido entre la cantidas de dias que tiene un año 
-            
         }
 
 
