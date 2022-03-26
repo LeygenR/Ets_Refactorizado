@@ -51,8 +51,22 @@ namespace ETS_Edades
                     }
                 }                
             }
-            FuncionesDespuesCristo.MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
+            MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
             Console.ReadKey();
+        }
+        /// <summary>
+        /// Función que muestra la diferencia de edad en días y años en dos personas
+        /// </summary>
+        /// <param name="diasPersona1">Días de la primera persona</param>
+        /// <param name="aniosPersona1">Años de la primera persona</param>
+        /// <param name="diasPersona2">Días de la segunda persona</param>
+        /// <param name="aniosPersona2">Años de la segunda persona</param>
+        private static void MostrarDiferenciaEdades(double diasPersona1, int aniosPersona1, double diasPersona2, int aniosPersona2)
+        {
+            Console.Clear();
+            double diasDiferencia = Math.Abs(diasPersona1 - diasPersona2);
+            int aniosDiferencia = Math.Abs(aniosPersona1 - aniosPersona2);
+            Console.WriteLine("La diferencia entre las dos personas es de {0} días y de {1} años", diasDiferencia, aniosDiferencia);
         }
     }
 }
