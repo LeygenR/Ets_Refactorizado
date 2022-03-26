@@ -9,7 +9,7 @@ namespace ETS_Edades
     public class FuncionesDespuesCristo
     {
         /// <summary>
-        /// Función para obtener una fecha correcta de nacimiento
+        /// Función que repite en bucle para obtener una fecha válida
         /// </summary>
         /// <param name="contadorMostrar">contador para tener secuencia del pedido de fechas por persona</param>
         /// <returns>Devuelve una fecha de nacimiento correcta(no supere los años actuales y contando los bisiestos cumpliendo el formato correcto)</returns>
@@ -20,25 +20,38 @@ namespace ETS_Edades
             do
             {
                 Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/2001)",contadorMostrar);
-                try
-                {
-                    fechaNacimiento = DateTime.ParseExact(Console.ReadLine().Trim(), "dd/MM/yyyy", null);//En caso de error en la conversión del parse sale la excepción del catch
-                    DateTime actual = DateTime.Now;//fecha actual para compararla a la introducida por teclado
-                    if(actual.Year < fechaNacimiento.Year)//comparamos si la fecha introducida no supera a la actual
-                    {
-                        Console.WriteLine("Error, la fecha introducida de la persona no es válida, aún no ha nacido");
-                    }
-                    else
-                    {
-                        leer = true;//fecha correcta salimos
-                    }
-                }
-                catch (Exception error)
-                {
-                    Console.WriteLine(error.Message);
-                }
+                string entrada = Console.ReadLine();
+                fechaNacimiento= ComprobarFecha(entrada,ref leer);
 
             } while (!leer);
+            return fechaNacimiento;
+        }
+        /// <summary>
+        /// Función que comprueba la válidez de una fecha
+        /// </summary>
+        /// <param name="entrada">Entrada de fecha por teclado</param>
+        /// <param name="error">Booleano de error en caso de fecha nó valida mostrarlo</param>
+        /// <returns>Retorna la conversión de la fecha</returns>
+        public static DateTime ComprobarFecha(string entrada, ref bool error)
+        {
+            DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
+            try
+            {
+                fechaNacimiento = DateTime.ParseExact(entrada.Trim(), "dd/MM/yyyy", null);//En caso de error en la conversión del parse sale la excepción del catch
+                DateTime actual = DateTime.Now;//fecha actual para compararla a la introducida por teclado
+                if (actual.Year < fechaNacimiento.Year)//comparamos si la fecha introducida no supera a la actual
+                {
+                    Console.WriteLine("Error, la fecha introducida de la persona no es válida, aún no ha nacido");
+                }
+                else
+                {
+                    error = true;//fecha correcta salimos
+                }
+            }
+            catch (Exception errorConversion)
+            {
+                Console.WriteLine(errorConversion.Message);
+            }
             return fechaNacimiento;
         }
         /// <summary>
