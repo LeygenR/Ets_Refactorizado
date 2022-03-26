@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETS_Edades
 {
-    public class Funciones
+    public class FuncionesDespuesCristo
     {
         /// <summary>
         /// Función para obtener una fecha correcta de nacimiento

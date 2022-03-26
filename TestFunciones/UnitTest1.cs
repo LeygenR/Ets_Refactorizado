@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ETS_Edades;
-using static ETS_Edades.Funciones;
+using static ETS_Edades.FuncionesDespuesCristo;
 namespace TestFunciones
 {
     [TestClass]
@@ -10,7 +10,7 @@ namespace TestFunciones
         [TestMethod]
         public void TestMethod1()
         {
-            Funciones funcion = new Funciones();
+            FuncionesDespuesCristo funcion = new FuncionesDespuesCristo();
             DateTime fechaNacimiento = DateTime.Parse("23/11/2001");
             double diasEsperados = 7428;
             double dias = ObtenerDias(fechaNacimiento);
