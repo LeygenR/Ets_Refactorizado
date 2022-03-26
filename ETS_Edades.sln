@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETS_Edades", "ETS_Edades\ETS_Edades.csproj", "{58FF550F-CDA7-4BDC-B933-8CE79529FF36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETS_Edades", "ETS_Edades\ETS_Edades.csproj", "{58FF550F-CDA7-4BDC-B933-8CE79529FF36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFunciones", "TestFunciones\TestFunciones.csproj", "{539FA2F9-5361-418C-80E6-0BF8BFD04F45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58FF550F-CDA7-4BDC-B933-8CE79529FF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FF550F-CDA7-4BDC-B933-8CE79529FF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FF550F-CDA7-4BDC-B933-8CE79529FF36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539FA2F9-5361-418C-80E6-0BF8BFD04F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539FA2F9-5361-418C-80E6-0BF8BFD04F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539FA2F9-5361-418C-80E6-0BF8BFD04F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539FA2F9-5361-418C-80E6-0BF8BFD04F45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

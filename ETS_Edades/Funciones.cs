@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETS_Edades
 {
-    class Funciones
+    public class Funciones
     {
         /// <summary>
         /// Función para obtener una fecha correcta de nacimiento
@@ -72,6 +72,14 @@ namespace ETS_Edades
                 anios--;
             }
             return anios;
+        }
+
+        public static void MostrarDiferenciaEdades(double diasPersona1,int aniosPersona1, double diasPersona2, int aniosPersona2)
+        {
+            Console.Clear();
+            double diasDiferencia = Math.Abs(diasPersona1 - diasPersona2);
+            int aniosDiferencia = Math.Abs(aniosPersona1 - aniosPersona2);
+            Console.WriteLine("La diferencia entre las dos personas es de {0} días y de {1} años",diasDiferencia,aniosDiferencia);
         }
 
     }
