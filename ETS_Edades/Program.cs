@@ -9,26 +9,31 @@ namespace ETS_Edades
 
             int contadorMostrar = 1;//contador para ir pidiendo persona
             bool correcto = false;//booleano para el bucle de entrada de datos
-            //crear las variables para cada persona
+            //crear las variables para cada persona para las funciones después de cristo
             DateTime FechaPersona1 = DateTime.Today;
             double diasPersona1 = 0;
             int aniosPersona1 = 0;
+
             DateTime FechaPersona2 = DateTime.Today;
             double diasPersona2 = 0;
             int aniosPersona2 = 0;
+
+            //crear las variables para cada persona para las funciones antes de cristo
             string[] FechaAntesCristoPersona1 = new string[0];
             string[] FechaAntesCristoPersona2 = new string[0];
+            
             int AnniosDiferencias1 = 0;
             int DiasDiferencias1 = 0;
 
             int AniosDiferencias2 = 0;
             int DiasDiferencias2 = 0;
-            while (!correcto)
+
+            while (!correcto)//booleano para salir
             {
                 int valor = 0;
                 ConsoleKeyInfo tecla;
 
-                if (contadorMostrar <= 2)
+                if (contadorMostrar <= 2)//mientras no esten introducidas las dos personas seguir pidiendo
                 {
                     Console.WriteLine("¿Fecha después de cristo (1) o antes de cristo? (2)");
                     tecla = Console.ReadKey(true);
@@ -45,7 +50,7 @@ namespace ETS_Edades
                 }
 
                 Console.WriteLine("\n");
-                if (valor == 1)
+                if (valor == 1)//fecha despues de cristo introducida
                 {
                     if (contadorMostrar == 1)
                     {
@@ -93,13 +98,11 @@ namespace ETS_Edades
                         }
 
                     }
-
                 }
                 else
                 {
 
-
-                    if (valor == 2)
+                    if (valor == 2)//fecha antes de cristo introducida
                     {
 
                         if (contadorMostrar == 1)
@@ -110,8 +113,6 @@ namespace ETS_Edades
                             Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias1, AnniosDiferencias1);
                             
                         }
-
-
 
                         if (contadorMostrar == 2)
                         {
@@ -137,37 +138,34 @@ namespace ETS_Edades
 
                 if (contadorMostrar > 2)
                 {
-                    if (FechaAntesCristoPersona1.Length != 0)
+                    if (FechaAntesCristoPersona1.Length != 0)//comprobar que la primera persona sus datos sean antes de cristo
                     {
-                        if (FechaAntesCristoPersona2.Length != 0)
+                        if (FechaAntesCristoPersona2.Length != 0)//comprobar que la segunda persona sus datos sean antes de cristo
                         {
-                            MostrarDiferenciaEdades(DiasDiferencias1, AnniosDiferencias1, DiasDiferencias2, AniosDiferencias2);
+                            MostrarDiferenciaEdades(DiasDiferencias1, AnniosDiferencias1, DiasDiferencias2, AniosDiferencias2);//mostrar los datos despues de cristo
                             correcto = true;
                         }
-                        else
+                        else//los datos de la segunda persona son después de cristo
                         {
-                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(DiasDiferencias1, AnniosDiferencias1, diasPersona2, aniosPersona2);
+                            MostrarDiferenciaEdades(DiasDiferencias1, AnniosDiferencias1, diasPersona2, aniosPersona2);
                             correcto = true;
                         }
 
                     }
                     else
                     {
-                        if (FechaAntesCristoPersona2.Length != 0)
+                        if (FechaAntesCristoPersona2.Length != 0)//los datos de la primera persona son despues de cristo y de la segunda también
                         {
-                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(diasPersona1, aniosPersona1, DiasDiferencias2, AniosDiferencias2);
+                            MostrarDiferenciaEdades(diasPersona1, aniosPersona1, DiasDiferencias2, AniosDiferencias2);
                             correcto = true;
                         }
-                        else
+                        else//Ambos datos de las personas son después de cristo
                         {
-                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
+                            MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
                             correcto = true;
                         }
                     }
                 }
-
-
-
             }
             Console.WriteLine("\n");
             Console.WriteLine("Pulse cualquier tecla para finalizar el programa...");

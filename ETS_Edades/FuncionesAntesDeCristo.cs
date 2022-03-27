@@ -201,25 +201,5 @@ namespace ETS_Edades
 
             return SumaDias;
         }
-
-
-        public static int CalcularDiferenciasEdades(double diasPersona1, int aniosPersona1, double diasPersona2, int aniosPersona2)
-        {
-            int DiferenciasDias = 0;
-            try
-            {
-                Console.Clear();
-                double diasDiferencia = Math.Abs(diasPersona1 - diasPersona2);
-                int aniosDiferencia = Math.Abs(aniosPersona1 - aniosPersona2);
-                Console.WriteLine("La diferencia entre las dos personas es de {0} días y de {1} años", diasDiferencia, aniosDiferencia);
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-
-
-            return DiferenciasDias;
-        }
     }
 }
