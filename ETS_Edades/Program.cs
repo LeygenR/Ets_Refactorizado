@@ -16,42 +16,161 @@ namespace ETS_Edades
             DateTime FechaPersona2 = DateTime.Today;
             double diasPersona2 = 0;
             int aniosPersona2 = 0;
+            string[] FechaAntesCristoPersona1 = new string[0];
+            string[] FechaAntesCristoPersona2 = new string[0];
+            int AnniosDiferencias1 = 0;
+            int DiasDiferencias1 = 0;
+
+            int AniosDiferencias2 = 0;
+            int DiasDiferencias2 = 0;
             while (!correcto)
             {
-                FechaPersona1 = FuncionesDespuesCristo.LeerFechaNacimiento(contadorMostrar);
-                diasPersona1 = FuncionesDespuesCristo.ObtenerDias(FechaPersona1);
-                if(diasPersona1 <= 0)//si los días son negativos es que aún no ha nacido, volver a pedir la fecha
+                int valor = 0;
+                ConsoleKeyInfo tecla;
+
+                if (contadorMostrar <= 2)
                 {
-                    Console.WriteLine("Error, la persona aún no ha nacido\nDeberá introducir una nueva fecha correcta");
-                }
-                else
-                {
-                    aniosPersona1 = FuncionesDespuesCristo.ObtenerAnios(FechaPersona1);
-                    Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, diasPersona1, aniosPersona1);
-                    contadorMostrar++;//pasamos a la siguiente persona
-                    Console.WriteLine("Escribe una tecla para continuar a la persona "+ contadorMostrar);//siguiente persona
-                    Console.ReadKey();
-                    Console.Clear();
-                    while (!correcto)
+                    Console.WriteLine("¿Fecha después de cristo (1) o antes de cristo? (2)");
+                    tecla = Console.ReadKey(true);
+                    switch (tecla.KeyChar)
                     {
-                        FechaPersona2 = FuncionesDespuesCristo.LeerFechaNacimiento(contadorMostrar);
-                        diasPersona2 = FuncionesDespuesCristo.ObtenerDias(FechaPersona2);
-                        if (diasPersona2 <= 0)//si los días son negativos es que aún no ha nacido, volver a pedir la fecha
+                        case '1': valor = 1; break; //Despues de cristo
+                        case '2': valor = 2; break; //Antes de cristo
+                    }
+
+                    if (valor == 0)
+                    {
+                        Console.WriteLine("La opcion no es correcta... vuelve a introducirla");
+                    }
+                }
+
+                Console.WriteLine("\n");
+                if (valor == 1)
+                {
+                    if (contadorMostrar == 1)
+                    {
+                        FechaPersona1 = FuncionesDespuesCristo.LeerFechaNacimiento(contadorMostrar);
+                        diasPersona1 = FuncionesDespuesCristo.ObtenerDias(FechaPersona1);
+                        if (diasPersona1 <= 0)//si los días son negativos es que aún no ha nacido, volver a pedir la fecha
                         {
                             Console.WriteLine("Error, la persona aún no ha nacido\nDeberá introducir una nueva fecha correcta");
                         }
                         else
                         {
-                            aniosPersona2 = FuncionesDespuesCristo.ObtenerAnios(FechaPersona2);
-                            Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, diasPersona2, aniosPersona2);
-                            correcto = true;//informacion de las dos personas correctas, salimos del bucle
-                            Console.WriteLine("Escribe una tecla para continuar a la diferencia de edades");//pedimos avanzar para mostrar la siguiente información y borrar la presentada
+                            aniosPersona1 = FuncionesDespuesCristo.ObtenerAnios(FechaPersona1);
+                            Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, diasPersona1, aniosPersona1);
+                            contadorMostrar++;//pasamos a la siguiente persona
+                            Console.WriteLine("\n");
+                            Console.WriteLine("Escribe una tecla para continuar a la persona " + contadorMostrar);//siguiente persona
                             Console.ReadKey();
+                            Console.Clear();
+
                         }
                     }
-                }                
+                    else
+                    {
+                        if (contadorMostrar == 2)
+                        {
+                            FechaPersona2 = FuncionesDespuesCristo.LeerFechaNacimiento(contadorMostrar);
+                            diasPersona2 = FuncionesDespuesCristo.ObtenerDias(FechaPersona2);
+                            if (diasPersona2 <= 0)//si los días son negativos es que aún no ha nacido, volver a pedir la fecha
+                            {
+                                Console.WriteLine("Error, la persona aún no ha nacido\nDeberá introducir una nueva fecha correcta");
+                            }
+                            else
+                            {
+                                aniosPersona2 = FuncionesDespuesCristo.ObtenerAnios(FechaPersona2);
+                                Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, diasPersona2, aniosPersona2);
+                                contadorMostrar++;
+
+                                if(contadorMostrar < 2)
+                                {
+                                    Console.WriteLine("Escribe una tecla para continuar a la persona " + contadorMostrar);//siguiente persona//pedimos avanzar para mostrar la siguiente información y borrar la presentada
+                                    Console.ReadKey();
+                                }
+                                
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+
+
+                    if (valor == 2)
+                    {
+
+                        if (contadorMostrar == 1)
+                        {
+                            FechaAntesCristoPersona1 = FuncionesAntesDeCristo.LeerFechaNacimiento(contadorMostrar);
+                            AnniosDiferencias1 = FuncionesAntesDeCristo.ObtenerAños(FechaAntesCristoPersona1);
+                            DiasDiferencias1 = FuncionesAntesDeCristo.ObtenerDias(AnniosDiferencias1, FechaAntesCristoPersona1);
+                            Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias1, AnniosDiferencias1);
+                            
+                        }
+
+
+
+                        if (contadorMostrar == 2)
+                        {
+                            FechaAntesCristoPersona2 = FuncionesAntesDeCristo.LeerFechaNacimiento(contadorMostrar);
+                            AniosDiferencias2 = FuncionesAntesDeCristo.ObtenerAños(FechaAntesCristoPersona2);
+                            DiasDiferencias2 = FuncionesAntesDeCristo.ObtenerDias(AniosDiferencias2, FechaAntesCristoPersona2);
+                            Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias2, AniosDiferencias2);
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+
+                        contadorMostrar++;
+                        if (contadorMostrar <= 2)
+                        {
+                            Console.WriteLine("\n");
+                            Console.WriteLine("Escribe una tecla para continuar a la persona " + contadorMostrar);//siguiente persona
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+
+                    }
+                }
+
+                if (contadorMostrar > 2)
+                {
+                    if (FechaAntesCristoPersona1.Length != 0)
+                    {
+                        if (FechaAntesCristoPersona2.Length != 0)
+                        {
+                            MostrarDiferenciaEdades(DiasDiferencias1, AnniosDiferencias1, DiasDiferencias2, AniosDiferencias2);
+                            correcto = true;
+                        }
+                        else
+                        {
+                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(DiasDiferencias1, AnniosDiferencias1, diasPersona2, aniosPersona2);
+                            correcto = true;
+                        }
+
+                    }
+                    else
+                    {
+                        if (FechaAntesCristoPersona2.Length != 0)
+                        {
+                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(diasPersona1, aniosPersona1, DiasDiferencias2, AniosDiferencias2);
+                            correcto = true;
+                        }
+                        else
+                        {
+                            FuncionesAntesDeCristo.CalcularDiferenciasEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
+                            correcto = true;
+                        }
+                    }
+                }
+
+
+
             }
-            MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
+            Console.WriteLine("\n");
+            Console.WriteLine("Pulse cualquier tecla para finalizar el programa...");
             Console.ReadKey();
         }
         /// <summary>

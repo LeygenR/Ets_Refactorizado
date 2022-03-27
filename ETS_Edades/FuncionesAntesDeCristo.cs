@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace ETS_Edades
 {
-    public class FuncionesAntesDeCristo
+    class FuncionesAntesDeCristo
     {
-        public static DateTime LeerFechaNacimiento(int contadorMostrar)
+        public static string[] LeerFechaNacimiento(int contadorMostrar)
         {
-            DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
-            bool leer = false;//booleano para salir solo cuando lea una fecha válida
-            var fechita = new DateTime();
+            //DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
+            bool leer = false;//booleano para salir solo cuando lea una fecha válida          
             string[] Dividir = new string[0];
             do
             {
-                Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/2001)", contadorMostrar);
+                Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/-523)", contadorMostrar);
                 string Fecha = Console.ReadLine();
 
                 try
@@ -25,12 +24,16 @@ namespace ETS_Edades
                     if (Dividir.Length == 3)
                     {
                         if (int.TryParse(Dividir[2], out int Año))
-                        { 
-                            if(Año < 0)
+                        {
+                            if (Año < 0)
                             {
                                 if (AntesDeCristoComprobacion(Dividir))
                                 {
                                     leer = true;//fecha correcta salimos
+                                }
+                                else
+                                {
+                                    Console.WriteLine("La fecha introducida es incorrecta.. vueve a introducirla...");
                                 }
                             }
                             else
@@ -39,6 +42,10 @@ namespace ETS_Edades
                             }
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine("Ha introducido la fecha en el formato incorrecto... Vuelve a introducirlo");
+                    }
                 }
                 catch (Exception error)
                 {
@@ -46,7 +53,7 @@ namespace ETS_Edades
                 }
 
             } while (!leer);
-            return fechita;
+            return Dividir;
         }
 
         public static bool AntesDeCristoComprobacion(string[] Dividir)
@@ -140,6 +147,79 @@ namespace ETS_Edades
             return ComprobacionFecha;
 
 
+        }
+
+
+        public static int ObtenerAños(string[] FechaAntesCristoPersona)
+        {
+            char[] Separador = { '/', ' ' };
+            DateTime fechaActual = DateTime.Now;
+            string[] AñoActualDividido = new string[0];
+            int AñosDiferencias = 0;
+            try
+            {
+                int ConvertirAñoPersonas = Int32.Parse(FechaAntesCristoPersona[2]);
+                string Fecha = fechaActual.ToString();
+                AñoActualDividido = Fecha.Split(Separador);
+                int ObtenerAñoActual = Int32.Parse(AñoActualDividido[2]);
+
+                AñosDiferencias = ObtenerAñoActual - ConvertirAñoPersonas;
+
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+            }
+
+            return AñosDiferencias;
+        }
+
+        public static int ObtenerDias(int AñosDiferencias, string[] FechaAntesCristoPersona)
+        {
+            char[] Separador = { '/', ' ' };
+            DateTime fechaActual = DateTime.Now;
+            string[] AñoActualDividido = new string[0];
+            string Fecha = fechaActual.ToString();
+            AñoActualDividido = Fecha.Split(Separador);
+            int ObtenerAñoActual = Int32.Parse(AñoActualDividido[2]);
+            int ObtenerMesActual = Int32.Parse(AñoActualDividido[1]);
+            int ConvertirAñoPersonas = Int32.Parse(FechaAntesCristoPersona[2]);
+            int ConvertirMesPersonas = Int32.Parse(FechaAntesCristoPersona[1]);
+
+            int SumaDias = 0;
+
+            for (int ContadorDias = ConvertirAñoPersonas; ContadorDias < ObtenerAñoActual; ContadorDias++)
+            {
+                SumaDias = SumaDias + 365;
+
+                if ((ContadorDias % 4 == 0 && ContadorDias % 100 != 0 || ContadorDias % 400 == 0))
+                {
+                    SumaDias = SumaDias + 1;
+                }
+
+            }
+
+            return SumaDias;
+        }
+
+
+        public static int CalcularDiferenciasEdades(double diasPersona1, int aniosPersona1, double diasPersona2, int aniosPersona2)
+        {
+            int DiferenciasDias = 0;
+            try
+            {
+                Console.Clear();
+                double diasDiferencia = Math.Abs(diasPersona1 - diasPersona2);
+                int aniosDiferencia = Math.Abs(aniosPersona1 - aniosPersona2);
+                Console.WriteLine("La diferencia entre las dos personas es de {0} días y de {1} años", diasDiferencia, aniosDiferencia);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+            }
+
+
+            return DiferenciasDias;
         }
     }
 }
