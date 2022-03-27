@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ETS_Edades
 {
-    class FuncionesAntesDeCristo
+    public class FuncionesAntesDeCristo
     {
         public static DateTime LeerFechaNacimiento(int contadorMostrar)
         {

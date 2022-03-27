@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using ETS_Edades;
 using static ETS_Edades.FuncionesDespuesCristo;
+using static ETS_Edades.FuncionesAntesDeCristo;
 namespace TestFunciones
 {
     [TestClass]
@@ -38,7 +39,7 @@ namespace TestFunciones
         public void TestDia1()
         {
             DateTime fechaNacimiento = DateTime.Parse("23/11/2001");
-            double diasEsperados = 7428;
+            double diasEsperados = 7429;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }
@@ -47,7 +48,7 @@ namespace TestFunciones
         public void TestDia2()
         {
             DateTime fechaNacimiento = DateTime.Parse("23/11/1000");
-            double diasEsperados = 373036;
+            double diasEsperados = 373037;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }
@@ -55,8 +56,8 @@ namespace TestFunciones
         [TestMethod]
         public void TestDia3()
         {
-            DateTime fechaNacimiento = DateTime.Parse("29/2/1904");
-            double diasEsperados = 43125;
+            DateTime fechaNacimiento = DateTime.Parse("29/02/1904");
+            double diasEsperados = 43126;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }
@@ -88,4 +89,33 @@ namespace TestFunciones
             Assert.AreEqual(anios, aniosEsperados);
         }
     }
+    [TestClass]
+    public class TestAntesDecristo 
+    {
+        [TestMethod]
+        public void TestFecha1()
+        {
+            bool error = false;
+            string[] entrada = { "29", "02", "-1904" };
+            error = AntesDeCristoComprobacion(entrada);
+            Assert.IsTrue(error);
+        }
+
+        public void TestFecha2()
+        {
+            bool error = false;
+            string[] entrada = { "28", "02", "-1" };
+            error = AntesDeCristoComprobacion(entrada);
+            Assert.IsTrue(error);
+        }
+
+        public void TestFecha3()
+        {
+            bool error = false;
+            string[] entrada = { "23", "11", "-2001" };
+            error = AntesDeCristoComprobacion(entrada);
+            Assert.IsTrue(error);
+        }
+    }
+
 }
