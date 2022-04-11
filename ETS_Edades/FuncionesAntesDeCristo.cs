@@ -150,7 +150,7 @@ namespace ETS_Edades
         }
 
 
-        public static int ObtenerAños(string[] FechaAntesCristoPersona)
+        public static int ObtenerAniosAntesDeCristo(string[] FechaAntesCristoPersona)
         {
             char[] Separador = { '/', ' ' };
             DateTime fechaActual = DateTime.Now;
@@ -174,7 +174,7 @@ namespace ETS_Edades
             return AñosDiferencias;
         }
 
-        public static int ObtenerDias(int AñosDiferencias, string[] FechaAntesCristoPersona)
+        public static int ObtenerDiasAntesDeCristo(int AñosDiferencias, string[] FechaAntesCristoPersona)
         {
             char[] Separador = { '/', ' ' };
             DateTime fechaActual = DateTime.Now;

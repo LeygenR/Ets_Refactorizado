@@ -39,7 +39,7 @@ namespace TestFunciones
         public void TestDia1()
         {
             DateTime fechaNacimiento = DateTime.Parse("23/11/2001");
-            double diasEsperados = 7430;
+            double diasEsperados = 7440;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }
@@ -48,7 +48,7 @@ namespace TestFunciones
         public void TestDia2()
         {
             DateTime fechaNacimiento = DateTime.Parse("23/11/1000");
-            double diasEsperados = 373038;
+            double diasEsperados = 373048;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }
@@ -57,7 +57,7 @@ namespace TestFunciones
         public void TestDia3()
         {
             DateTime fechaNacimiento = DateTime.Parse("29/02/1904");
-            double diasEsperados = 43127;
+            double diasEsperados = 43137;
             double dias = ObtenerDias(fechaNacimiento);
             Assert.AreEqual(dias, diasEsperados);
         }

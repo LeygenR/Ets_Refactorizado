@@ -108,8 +108,8 @@ namespace ETS_Edades
                         if (contadorMostrar == 1)
                         {
                             FechaAntesCristoPersona1 = FuncionesAntesDeCristo.LeerFechaNacimiento(contadorMostrar);
-                            AnniosDiferencias1 = FuncionesAntesDeCristo.ObtenerAños(FechaAntesCristoPersona1);
-                            DiasDiferencias1 = FuncionesAntesDeCristo.ObtenerDias(AnniosDiferencias1, FechaAntesCristoPersona1);
+                            AnniosDiferencias1 = FuncionesAntesDeCristo.ObtenerAniosAntesDeCristo(FechaAntesCristoPersona1);
+                            DiasDiferencias1 = FuncionesAntesDeCristo.ObtenerDiasAntesDeCristo(AnniosDiferencias1, FechaAntesCristoPersona1);
                             Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias1, AnniosDiferencias1);
                             
                         }
@@ -117,8 +117,8 @@ namespace ETS_Edades
                         if (contadorMostrar == 2)
                         {
                             FechaAntesCristoPersona2 = FuncionesAntesDeCristo.LeerFechaNacimiento(contadorMostrar);
-                            AniosDiferencias2 = FuncionesAntesDeCristo.ObtenerAños(FechaAntesCristoPersona2);
-                            DiasDiferencias2 = FuncionesAntesDeCristo.ObtenerDias(AniosDiferencias2, FechaAntesCristoPersona2);
+                            AniosDiferencias2 = FuncionesAntesDeCristo.ObtenerAniosAntesDeCristo(FechaAntesCristoPersona2);
+                            DiasDiferencias2 = FuncionesAntesDeCristo.ObtenerDiasAntesDeCristo(AniosDiferencias2, FechaAntesCristoPersona2);
                             Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias2, AniosDiferencias2);
                             Console.ReadKey();
                             Console.Clear();
