@@ -6,7 +6,7 @@ namespace ETS_Edades
     {
         static void Main(string[] args)
         {
-
+            int hola = 0;
             int contadorMostrar = 1;//contador para ir pidiendo persona
             bool correcto = false;//booleano para el bucle de entrada de datos
             //crear las variables para cada persona para las funciones después de cristo
