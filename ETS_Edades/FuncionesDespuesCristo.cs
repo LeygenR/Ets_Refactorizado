@@ -8,6 +8,7 @@ namespace ETS_Edades
 {
     public class FuncionesDespuesCristo
     {
+        
         /// <summary>
         /// Función que repite en bucle para obtener una fecha válida
         /// </summary>
@@ -86,8 +87,5 @@ namespace ETS_Edades
             }
             return anios;
         }
-
-        
-
     }
 }
