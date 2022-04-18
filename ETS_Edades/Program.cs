@@ -69,7 +69,6 @@ namespace ETS_Edades
                             Console.WriteLine("Escribe una tecla para continuar a la persona " + contadorMostrar);//siguiente persona
                             Console.ReadKey();
                             Console.Clear();
-
                         }
                     }
                     else
