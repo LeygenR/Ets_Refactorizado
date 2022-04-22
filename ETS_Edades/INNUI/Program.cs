@@ -1,4 +1,6 @@
 ﻿using System;
+using INNUI.ETS_Edades;
+using ICLUI.ETS_Edades;
 
 namespace ETS_Edades
 {
@@ -6,9 +8,21 @@ namespace ETS_Edades
     {
         static void Main(string[] args)
         {
+            const string languages_text = "Idiomas fechas.csv";
+
+            string[] fileData = Fichero.ReadingFile(languages_text);
+            string[] languagesCode = fileData[0].Split(',');
+            string[] languages = fileData[1].Split(',');
+
+            Menu.ShowMenu(languagesCode, languages);
+            int language = Menu.SelectOption(languagesCode);
+            if (!language.Equals(-1))
+            {
+                Messages.ShowAskDate(languagesCode, language);
+            }
             int contadorMostrar = 1;//contador para ir pidiendo persona
             bool correcto = false;//booleano para el bucle de entrada de datos
-            //crear las variables para cada persona para las funciones después de cristo
+                                  //crear las variables para cada persona para las funciones después de cristo
             DateTime FechaPersona1 = DateTime.Today;
             double diasPersona1 = 0;
             int aniosPersona1 = 0;
@@ -20,36 +34,23 @@ namespace ETS_Edades
             //crear las variables para cada persona para las funciones antes de cristo
             string[] FechaAntesCristoPersona1 = new string[0];
             string[] FechaAntesCristoPersona2 = new string[0];
-            
+
             int AnniosDiferencias1 = 0;
             int DiasDiferencias1 = 0;
 
             int AniosDiferencias2 = 0;
             int DiasDiferencias2 = 0;
-
             while (!correcto)//booleano para salir
             {
-                int valor = 0;
-                ConsoleKeyInfo tecla;
 
-                if (contadorMostrar <= 2)//mientras no esten introducidas las dos personas seguir pidiendo
+                if (contadorMostrar <= 2)
                 {
-                    Console.WriteLine("¿Fecha después de cristo (1) o antes de cristo? (2)");
-                    tecla = Console.ReadKey(true);
-                    switch (tecla.KeyChar)
-                    {
-                        case '1': valor = 1; break; //Despues de cristo
-                        case '2': valor = 2; break; //Antes de cristo
-                    }
-
-                    if (valor == 0)
-                    {
-                        Console.WriteLine("La opcion no es correcta... vuelve a introducirla");
-                    }
+                    // funcion llamada introduccion AC/DC
                 }
 
                 Console.WriteLine("\n");
-                if (valor == 1)//fecha despues de cristo introducida
+
+                if (valor == "DC")//fecha despues de cristo introducida
                 {
                     if (contadorMostrar == 1)
                     {
@@ -86,12 +87,12 @@ namespace ETS_Edades
                                 Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, diasPersona2, aniosPersona2);
                                 contadorMostrar++;
 
-                                if(contadorMostrar < 2)
+                                if (contadorMostrar < 2)
                                 {
                                     Console.WriteLine("Escribe una tecla para continuar a la persona " + contadorMostrar);//siguiente persona//pedimos avanzar para mostrar la siguiente información y borrar la presentada
                                     Console.ReadKey();
                                 }
-                                
+
                             }
                         }
 
@@ -100,7 +101,7 @@ namespace ETS_Edades
                 else
                 {
 
-                    if (valor == 2)//fecha antes de cristo introducida
+                    //    if (valor == 2)//fecha antes de cristo introducida
                     {
 
                         if (contadorMostrar == 1)
@@ -109,7 +110,7 @@ namespace ETS_Edades
                             AnniosDiferencias1 = FuncionesAntesDeCristo.ObtenerAniosAntesDeCristo(FechaAntesCristoPersona1);
                             DiasDiferencias1 = FuncionesAntesDeCristo.ObtenerDiasAntesDeCristo(AnniosDiferencias1, FechaAntesCristoPersona1);
                             Console.WriteLine("La persona {0} tiene {1} dias y {2} años", contadorMostrar, DiasDiferencias1, AnniosDiferencias1);
-                            
+
                         }
 
                         if (contadorMostrar == 2)
@@ -169,13 +170,7 @@ namespace ETS_Edades
             Console.WriteLine("Pulse cualquier tecla para finalizar el programa...");
             Console.ReadKey();
         }
-        /// <summary>
-        /// Función que muestra la diferencia de edad en días y años en dos personas
-        /// </summary>
-        /// <param name="diasPersona1">Días de la primera persona</param>
-        /// <param name="aniosPersona1">Años de la primera persona</param>
-        /// <param name="diasPersona2">Días de la segunda persona</param>
-        /// <param name="aniosPersona2">Años de la segunda persona</param>
+
         private static void MostrarDiferenciaEdades(double diasPersona1, int aniosPersona1, double diasPersona2, int aniosPersona2)
         {
             Console.Clear();

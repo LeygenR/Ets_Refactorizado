@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETS_Edades
+namespace INNUI.ETS_Edades
 {
-    class Menu
+    class TratarFechas
     {
     }
 }

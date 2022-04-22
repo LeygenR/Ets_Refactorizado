@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ETS_Edades
+namespace INNUI.ETS_Edades
 {
-    public class FuncionesDespuesCristo
+    class FuncionesDespuesCristo
     {
-        
+
         /// <summary>
         /// Función que repite en bucle para obtener una fecha válida
         /// </summary>
@@ -20,9 +16,9 @@ namespace ETS_Edades
             bool leer = false;//booleano para salir solo cuando lea una fecha válida
             do
             {
-                Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/2001)",contadorMostrar);
+                Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/2001)", contadorMostrar);
                 string entrada = Console.ReadLine();
-                fechaNacimiento= ComprobarFecha(entrada,ref leer);
+                fechaNacimiento = ComprobarFecha(entrada, ref leer);
 
             } while (!leer);
             return fechaNacimiento;
