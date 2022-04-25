@@ -1,8 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ETS_Edades;
-using static ETS_Edades.FuncionesDespuesCristo;
-using static ETS_Edades.FuncionesAntesDeCristo;
 namespace TestFunciones
 {
     [TestClass]
@@ -13,7 +10,7 @@ namespace TestFunciones
         {
             bool error = false;
             string entrada = "23/11/2001";
-            DateTime fechaNacimiento = ComprobarFecha(entrada,ref error);
+            DateTime fechaNacimiento = ComprobarFecha(entrada, ref error);
             Assert.IsTrue(error);
         }
 
@@ -90,7 +87,7 @@ namespace TestFunciones
         }
     }
     [TestClass]
-    public class TestAntesDecristo 
+    public class TestAntesDecristo
     {
         [TestMethod]
         public void TestFecha1()

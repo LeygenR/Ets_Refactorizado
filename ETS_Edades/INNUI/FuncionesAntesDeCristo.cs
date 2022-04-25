@@ -4,54 +4,6 @@ namespace INNUI.ETS_Edades
 {
     public class FuncionesAntesDeCristo
     {
-        public static string[] LeerFechaNacimiento(int contadorMostrar)
-        {
-            //DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
-            bool leer = false;//booleano para salir solo cuando lea una fecha válida          
-            string[] Dividir = new string[0];
-            do
-            {
-                Console.WriteLine("Introduzca la fecha de la persona {0} en el formato correcto(dd/MM/yyyy, por ejemplo 01/01/-523)", contadorMostrar);
-                string Fecha = Console.ReadLine();
-
-                try
-                {
-                    Dividir = Fecha.Split('/');
-                    if (Dividir.Length == 3)
-                    {
-                        if (int.TryParse(Dividir[2], out int Año))
-                        {
-                            if (Año < 0)
-                            {
-                                if (AntesDeCristoComprobacion(Dividir))
-                                {
-                                    leer = true;//fecha correcta salimos
-                                }
-                                else
-                                {
-                                    Console.WriteLine("La fecha introducida es incorrecta.. vueve a introducirla...");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("El año debe ser negativo");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ha introducido la fecha en el formato incorrecto... Vuelve a introducirlo");
-                    }
-                }
-                catch (Exception error)
-                {
-                    Console.WriteLine(error.Message);
-                }
-
-            } while (!leer);
-            return Dividir;
-        }
-
         public static bool AntesDeCristoComprobacion(string[] Dividir)
         {
             int Dia = 0;
@@ -136,7 +88,6 @@ namespace INNUI.ETS_Edades
                                 }
                             }
                         }
-
                     }
                 }
             }

@@ -7,7 +7,7 @@ namespace ICLUI.ETS_Edades
         public static void ShowMenu(string[] languageCode, string[] language)
         {
             Console.WriteLine("---------------------------------------");
-            Console.WriteLine("              SELECT LANGUAGE          ");
+            Console.WriteLine("            SELECT LANGUAGE            ");
             Console.WriteLine("---------------------------------------");
             Console.WriteLine("---------------------------------------");
             for (int count = 0; count < languageCode.Length; count++)
@@ -34,28 +34,27 @@ namespace ICLUI.ETS_Edades
 
         public static string TypeDCorAC()
         {
-            Messages.
-            string beaf = "";
-
-            if (beaf != "")
+            Messages.ShowAskPeriod();
+            string beaf;
+            bool valid = false;
+            do
             {
-                if (beaf == "DC")
+                beaf = Console.ReadLine();
+                if (!beaf.Equals(""))
                 {
-                    
+                    if (beaf.Equals("DC") || beaf.Equals("AC"))
+                    {
+                        valid = true;
+                    }
                 }
                 else
                 {
-                    if (beaf == "AC")
-                    {
-                        
-                    }
+                    Messages.ShowError(9);
                 }
             }
-            else
-            {
-                Console.WriteLine("");
-            }
+            while (!valid);
 
+            return beaf;
         }
             
     }
