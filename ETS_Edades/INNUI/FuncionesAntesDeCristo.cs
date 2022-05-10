@@ -4,62 +4,51 @@ namespace INNUI.ETS_Edades
 {
     public class FuncionesAntesDeCristo
     {
-        public static bool AntesDeCristoComprobacion(string[] Dividir)
+        public static bool AntesDeCristoComprobacion(string[] dividir)
         {
-            int Dia = 0;
-            int Año = 0;
-            bool ComprobacionFecha = false;
-            if (Int32.TryParse(Dividir[1], out int Mes))
+            bool comprobacionFecha = false;
+            if (Int32.TryParse(dividir[1], out int mes))
             {
-                if (Mes >= 1)
+                if ((mes >= 1) && (mes <= 12))
                 {
-                    if (Mes <= 12)
+                    if (Int32.TryParse(dividir[0], out int dia))
                     {
-                        if (Int32.TryParse(Dividir[0], out Dia))
+                        if (dia > 0)
                         {
-                            if (Dia > 0)
+                            if (Int32.TryParse(dividir[2], out int anio))
                             {
-                                if ((Mes % 2) == 0) //Si los meses son pares, significa que son todos 30 menos agosto, octubre y diciembre que son 31. 
-                                {                   //Tambien hemos tenido en cuenta a febrero, si el año es biciesto, febrero tiene 29 dias y si no lo es tiene 28.
-                                    if (Int32.TryParse(Dividir[0], out Dia))
+                                if ((mes % 2) == 0) //Si los meses son pares, significa que son todos 30 menos agosto, octubre y diciembre que son 31. 
+                                {                //Tambien hemos tenido en cuenta a febrero, si el año es biciesto, febrero tiene 29 dias y si no lo es tiene 28.
+                                    if (mes == 02)
                                     {
-                                        if (Mes == 02)
+                                        if ( ((anio % 4 == 0) && (anio % 100 != 0)) || (anio % 400 == 0) )  //Comprobar si el año es bisiesto para febrero
                                         {
-                                            if (Int32.TryParse(Dividir[2], out Año))
+                                            if (dia <= 29)
                                             {
-                                                if (Año % 4 == 0 && Año % 100 != 0 || Año % 400 == 0)  //Comprobar si el año es bisiesto para febrero
-                                                {
-                                                    if (Dia <= 29)
-                                                    {
-                                                        ComprobacionFecha = true;
-                                                    }
-                                                }
-                                                else
-                                                {
-
-                                                    if (Dia <= 28)
-                                                    {
-                                                        ComprobacionFecha = true;
-                                                    }
-
-                                                }
+                                                comprobacionFecha = true;
                                             }
                                         }
                                         else
                                         {
-                                            if (Dia <= 30)
+                                            if (dia <= 28)
                                             {
-                                                ComprobacionFecha = true;
+                                                comprobacionFecha = true;
                                             }
-                                            else
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (dia <= 30)
+                                        {
+                                            comprobacionFecha = true;
+                                        }
+                                        else
+                                        {
+                                            if ((mes == 08) || (mes == 10) || (mes == 12)) //Meses pares que terminen en 31
                                             {
-                                                if ((Mes == 08) || (Mes == 10) || (Mes == 12)) //Meses pares que terminen en 31
+                                                if (dia <= 31)
                                                 {
-                                                    if (Dia <= 31)
-                                                    {
-                                                        ComprobacionFecha = true;
-                                                    }
-
+                                                    comprobacionFecha = true;
                                                 }
                                             }
                                         }
@@ -67,22 +56,18 @@ namespace INNUI.ETS_Edades
                                 }
                                 else
                                 {
-                                    if (Int32.TryParse(Dividir[0], out Dia))
+                                    if (mes < 09)
                                     {
-
-                                        if (Mes < 09)
+                                        if (dia <= 31)
                                         {
-                                            if (Dia <= 31)
-                                            {
-                                                ComprobacionFecha = true;
-                                            }
+                                            comprobacionFecha = true;
                                         }
-                                        else
+                                    }
+                                    else
+                                    {
+                                        if (dia <= 30)
                                         {
-                                            if (Dia <= 30)
-                                            {
-                                                ComprobacionFecha = true;
-                                            }
+                                            comprobacionFecha = true;
                                         }
                                     }
                                 }
@@ -90,24 +75,24 @@ namespace INNUI.ETS_Edades
                         }
                     }
                 }
+                return comprobacionFecha;
             }
-            return ComprobacionFecha;
         }
 
-        public static int ObtenerAniosAntesDeCristo(string[] FechaAntesCristoPersona)
+        public static int ObtenerAniosAntesDeCristo(string[] fechaAntesCristoPersona)
         {
-            char[] Separador = { '/', ' ' };
+            char[] separador = { '/', ' ' };
             DateTime fechaActual = DateTime.Now;
-            string[] AñoActualDividido = new string[0];
-            int AñosDiferencias = 0;
+            string[] anioActualDividido = new string[0];
+            int aniosDiferencias = 0;
             try
             {
-                int ConvertirAñoPersonas = Int32.Parse(FechaAntesCristoPersona[2]);
-                string Fecha = fechaActual.ToString();
-                AñoActualDividido = Fecha.Split(Separador);
-                int ObtenerAñoActual = Int32.Parse(AñoActualDividido[2]);
+                int convertirAnioPersonas = Int32.Parse(fechaAntesCristoPersona[2]);
+                string fecha = fechaActual.ToString();
+                anioActualDividido = fecha.Split(separador);
+                int obtenerAnioActual = Int32.Parse(anioActualDividido[2]);
 
-                AñosDiferencias = ObtenerAñoActual - ConvertirAñoPersonas;
+                aniosDiferencias = obtenerAnioActual - convertirAnioPersonas;
 
             }
             catch (Exception error)
@@ -115,35 +100,35 @@ namespace INNUI.ETS_Edades
                 Console.WriteLine(error.Message);
             }
 
-            return AñosDiferencias;
+            return aniosDiferencias;
         }
 
-        public static int ObtenerDiasAntesDeCristo(int AñosDiferencias, string[] FechaAntesCristoPersona)
+        public static int ObtenerDiasAntesDeCristo(int aniosDiferencias, string[] fechaAntesCristoPersona)
         {
             char[] Separador = { '/', ' ' };
             DateTime fechaActual = DateTime.Now;
-            string[] AñoActualDividido = new string[0];
-            string Fecha = fechaActual.ToString();
-            AñoActualDividido = Fecha.Split(Separador);
-            int ObtenerAñoActual = Int32.Parse(AñoActualDividido[2]);
-            int ObtenerMesActual = Int32.Parse(AñoActualDividido[1]);
-            int ConvertirAñoPersonas = Int32.Parse(FechaAntesCristoPersona[2]);
-            int ConvertirMesPersonas = Int32.Parse(FechaAntesCristoPersona[1]);
+            string[] anioActualDividido = new string[0];
+            string fecha = fechaActual.ToString();
+            anioActualDividido = fecha.Split(Separador);
+            int obtenerAnioActual = Int32.Parse(anioActualDividido[2]);
+            int obtenerMesActual = Int32.Parse(anioActualDividido[1]);
+            int convertirAnioPersonas = Int32.Parse(fechaAntesCristoPersona[2]);
+            int convertirMesPersonas = Int32.Parse(fechaAntesCristoPersona[1]);
 
-            int SumaDias = 0;
+            int sumaDias = 0;
 
-            for (int ContadorDias = ConvertirAñoPersonas; ContadorDias < ObtenerAñoActual; ContadorDias++)
+            for (int contadorDias = convertirAnioPersonas; contadorDias < obtenerAnioActual; contadorDias++)
             {
-                SumaDias = SumaDias + 365;
+                sumaDias = sumaDias + 365;
 
-                if ((ContadorDias % 4 == 0 && ContadorDias % 100 != 0 || ContadorDias % 400 == 0))
+                if ((contadorDias % 4 == 0 && contadorDias % 100 != 0 || contadorDias % 400 == 0))
                 {
-                    SumaDias = SumaDias + 1;
+                    sumaDias = sumaDias + 1;
                 }
 
             }
 
-            return SumaDias;
+            return sumaDias;
         }
     }
 }

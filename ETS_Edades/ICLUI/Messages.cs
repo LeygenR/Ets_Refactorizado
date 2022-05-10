@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ICLUI.ETS_Edades
 {
@@ -37,7 +33,13 @@ namespace ICLUI.ETS_Edades
         {
             string[] texts_language = FILEDATA[numMessage].Split(',');
             Console.WriteLine(texts_language[LANGUAGE]);
-            _=Console.ReadKey(true);
+            _ = Console.ReadKey(true);
+        }
+
+        public static void ShowMessageClient()
+        {
+            string msgShow = "La diferencia entre las dos personas es de {0} días y de {1} años";
+            string msgShow2 = "La persona {0} tiene {1} dias y {2} años";
         }
     }
 }

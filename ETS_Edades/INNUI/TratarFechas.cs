@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ICLUI.ETS_Edades;
+﻿using ICLUI.ETS_Edades;
+using System;
 
 namespace INNUI.ETS_Edades
 {
     class TratarFechas
     {
-        public static string[] LeerFechaNacimientoAC(ref int contadorMostrar)
+        public static string[] LeerFechaNacimientoAC(int contadorMostrar)
         {
             //DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
             bool leer = false;//booleano para salir solo cuando lea una fecha válida          
@@ -18,24 +14,25 @@ namespace INNUI.ETS_Edades
             {
                 Console.Clear();
                 Messages.ShowAskDate(contadorMostrar);
-                string Fecha = Console.ReadLine();
+                string fechaAC = Console.ReadLine();
                 try
                 {
-                    Dividir = Fecha.Split('/');
+                    Dividir = fechaAC.Split('/');
                     if (Dividir.Length == 3)
                     {
-                        if (int.TryParse(Dividir[2], out int Año))
+                        if (int.TryParse(Dividir[2], out int Anioo))
                         {
-                            if (Año < 0)
+                            if (Anio < 0)
                             {
-                                if (FuncionesAntesDeCristo.AntesDeCristoComprobacion(Dividir))
-                                {
-                                    leer = true;//fecha correcta salimos
-                                }
-                                else
-                                {
-                                    Messages.ShowError(4);
-                                }
+                                if (int.TryParse())
+                                    if (FuncionesAntesDeCristo.AntesDeCristoComprobacion(Dividir))
+                                    {
+                                        leer = true;//fecha correcta salimos
+                                    }
+                                    else
+                                    {
+                                        Messages.ShowError(4);
+                                    }
                             }
                             else
                             {
@@ -65,18 +62,52 @@ namespace INNUI.ETS_Edades
         /// </summary>
         /// <param name="contadorMostrar">contador para tener secuencia del pedido de fechas por persona</param>
         /// <returns>Devuelve una fecha de nacimiento correcta(no supere los años actuales y contando los bisiestos cumpliendo el formato correcto)</returns>
-        public static DateTime LeerFechaNacimientoDC(ref int contadorMostrar)
+        public static string[] LeerFechaNacimientoDC(int contadorMostrar) //
         {
-            DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
+            DateTime fechaDC = new DateTime();
             bool leer = false;//booleano para salir solo cuando lea una fecha válida
+            string[] fechaSeparada = new string[3];
             do
             {
                 Messages.ShowAskDate(contadorMostrar);
                 string entrada = Console.ReadLine();
-                fechaNacimiento = FuncionesDespuesCristo.ComprobarFecha(entrada, ref leer);
+                fechaDC = FuncionesDespuesCristo.ComprobarFecha(entrada, ref leer);
+                fechaSeparada = fechaDC.ToShortDateString().Split('/');
 
             } while (!leer);
-            return fechaNacimiento;
+            return fechaSeparada;
+        }
+        public static bool IsAfterChrist(string siglasAntesCristo, string siglasDespuesCristo)
+        {
+            Messages.ShowAskPeriod();
+            string beaf;
+            bool valid = false;
+            bool afterChrist = true;
+            do
+            {
+                beaf = Console.ReadLine().Trim().ToUpper();
+                if (!beaf.Equals(""))
+                {
+                    if (beaf.Equals(siglasDespuesCristo))
+                    {
+                        afterChrist = false;
+                        valid = true;
+                    }
+                    else
+                    {
+                        if (beaf.Equals(siglasAntesCristo))
+                        {
+                            valid = true;
+                        }
+                    }
+                }
+                else
+                {
+                    Messages.ShowError(9);
+                }
+            }
+            while (!valid);
+            return afterChrist;
         }
     }
 }

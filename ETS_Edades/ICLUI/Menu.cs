@@ -32,31 +32,8 @@ namespace ICLUI.ETS_Edades
             return (posIdioma);
         }
 
-        public static string TypeDCorAC()
-        {
-            Messages.ShowAskPeriod();
-            string beaf;
-            bool valid = false;
-            do
-            {
-                beaf = Console.ReadLine();
-                if (!beaf.Equals(""))
-                {
-                    if (beaf.Equals("DC") || beaf.Equals("AC"))
-                    {
-                        valid = true;
-                    }
-                }
-                else
-                {
-                    Messages.ShowError(9);
-                }
-            }
-            while (!valid);
 
-            return beaf;
-        }
-            
+
     }
 
 }
