@@ -1,6 +1,8 @@
 ﻿using ICLUI.ETS_Edades;
 using INNUI.ETS_Edades;
 
+using System;
+
 namespace ETS_Edades
 {
     /// <summary>
@@ -12,7 +14,8 @@ namespace ETS_Edades
         static void Main(string[] args)
         {
             Menu.ShowMenu(Messages.LANGUAGES_CODE, Messages.LANGUAGES); //Mostrado menú idiomas.
-            Messages.LANGUAGE = Menu.SelectOption(Messages.LANGUAGES_CODE); //Elegir opción idioma.
+            string option = Console.ReadLine();
+            Messages.LANGUAGE = Menu.SelectOption(option, Messages.LANGUAGES_CODE); //Elegir opción idioma.
             if (!Messages.LANGUAGE.Equals(-1))
             {
                 bool fecha1Despues_Cristo = true;

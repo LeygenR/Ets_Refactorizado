@@ -5,9 +5,9 @@ namespace ICLUI.ETS_Edades
     /// <summary>
     /// Clase con los distintos mensajes que se pueden presentar en distintos idiomas.
     /// </summary>
-    class Messages
+    public class Messages
     {
-        public static string LANGUAGUE_TEXTS = "Idiomas fechas.csv"; //Fichero con los idiomas.
+        public static string LANGUAGUE_TEXTS = "Idiomas_fechas.csv"; //Fichero con los idiomas.
 
         public static string[] FILEDATA = Fichero.ReadingFile(LANGUAGUE_TEXTS); //Llamamos al método con el que guardamos el contenido del fichero.
         public static string[] LANGUAGES_CODE = FILEDATA[0].Split(','); //Códigos de idiomas
