@@ -6,7 +6,7 @@ namespace INNUI.ETS_Edades
     /// <summary>
     /// Clase con los métodos para el tratamiento de fechas posteriores a Cristo.
     /// </summary>
-    class FuncionesDespuesCristo
+    public class FuncionesDespuesCristo
     {
         /// <summary>
         /// Función que repite en bucle para obtener una fecha válida

@@ -48,17 +48,17 @@ namespace ICLUI.ETS_Edades
         /// <param name="fecha2">Fecha persona 2.</param>
         /// <param name="difAnhos">Diferencia de anhos entre las dos fechas y cada fecha con respecto a la actual.</param>
         /// <param name="difDias">Diferencia de días enre las dos fechas y cada fecha con respecto a la actual.</param>
-        public static void ShowResult(string fecha1, string fecha2,int[]difAnhos,int[]difDias)
+        public static void ShowResult(string fecha1, string fecha2, int[] difAnhos, int[] difDias)
         {
-            string[] text_result = FILEDATA[12].Split(',');       
+            string[] text_result = FILEDATA[12].Split(',');
             Console.WriteLine("---------------------------------------------------------------");
-            Console.WriteLine(text_result[LANGUAGE],fecha1,fecha2,difAnhos[0],difDias[0]);
+            Console.WriteLine(text_result[LANGUAGE], fecha1, fecha2, difAnhos[0], difDias[0]);
             Console.WriteLine("---------------------------------------------------------------");
             text_result = FILEDATA[11].Split(',');
-            for(int count = 1; count <= 2;count++)
+            for (int count = 1; count <= 2; count++)
             {
                 Console.WriteLine("---------------------------------------------------------------");
-                Console.WriteLine(text_result[LANGUAGE],count,difDias[count], difAnhos[count]);
+                Console.WriteLine(text_result[LANGUAGE], count, difDias[count], difAnhos[count]);
                 Console.WriteLine("---------------------------------------------------------------");
             }
             _ = Console.ReadKey(true);

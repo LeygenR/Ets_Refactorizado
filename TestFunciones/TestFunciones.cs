@@ -1,7 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using INNUI.ETS_Edades;
 using ICLUI.ETS_Edades;
+using INNUI.ETS_Edades;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestFunciones
 {
@@ -12,69 +11,91 @@ namespace TestFunciones
         public void TestEspañol()
         {
             string option = "ES";
-            int expectedResult = 1;
+            int expectedResult = 0;
 
             int result = Menu.SelectOption(option, Messages.LANGUAGES_CODE);
             Assert.AreEqual(expectedResult, result);
         }
     }
+
     [TestClass]
     public class TestDespuesDeCristo
     {
         [TestMethod]
         public void TestFechaDC()
         {
-            bool error = false;
-            string entrada = "23/11/2001";
-            DateTime fechaNacimiento = ComprobarFecha(entrada, ref error);
-            Assert.IsTrue(error);
-        }
+            string entrada = "21/01/1993";
+            bool noerror = false;
 
+            FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
+            Assert.IsTrue(noerror);
+        }
         [TestMethod]
         public void TestDiaDC()
         {
-            DateTime fechaNacimiento = DateTime.Parse("23/11/2001");
-            double diasEsperados = 7440;
-            double dias = ObtenerDias(fechaNacimiento);
-            Assert.AreEqual(dias, diasEsperados);
+
+            string[] fecha1 = { "20", "01", "1993" };
+            string[] fecha2 = { "21", "01", "1993" };
+            bool fecha1Despues_Cristo = true;
+            bool fecha2Despues_Cristo = true;
+
+            int[] difFechaDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+            int[] diasEsperados = { 0, 10713, 10713 };
+            Assert.AreEqual(diasEsperados, difFechaDias);
         }
+
         [TestMethod]
         public void TestAnioDC()
         {
-            DateTime fechaNacimiento = DateTime.Parse("25/03/2003");
-            int aniosEsperados = 19;
-            int anios = ObtenerAnios(fechaNacimiento);
-            Assert.AreEqual(anios, aniosEsperados);
+            string[] fecha1 = { "10", "01", "0010" };
+            string[] fecha2 = { "15", "01", "0010" };
+            bool fecha1Despues_Cristo = true;
+            bool fecha2Despues_Cristo = true;
+
+            int[] difFechasAnho = TratarFechas.CalcularAnhosDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+            int[] anhosEsperados = { 0, 2012, 2012 };
+            Assert.AreEqual(anhosEsperados, difFechasAnho);
         }
     }
+
     [TestClass]
     public class TestAntesDeCristo
     {
         [TestMethod]
         public void TestFechaAC()
         {
-            bool error = false;
-            string[] entrada = { "29", "02", "-1904" };
-            error = AntesDeCristoComprobacion(entrada);
-            Assert.IsTrue(error);
+            string entrada = "21/01/1993";
+            bool noerror = false;
+
+            FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
+            Assert.IsTrue(noerror);
         }
+
         [TestMethod]
         public void TestDiaAC()
         {
-            string[] entrada = { "29", "02", "-1904" };//año bisiesto
-            int aniosdiferencia = 3926;
-            int diasEsperados = 1433969;
-            int dias = ObtenerDiasAntesDeCristo(aniosdiferencia,entrada);
-            Assert.AreEqual(dias,diasEsperados);
+
+            string[] fecha1 = { "20", "01", "1993" };
+            string[] fecha2 = { "21", "01", "1993" };
+            bool fecha1Despues_Cristo = false;
+            bool fecha2Despues_Cristo = false;
+
+            int[] difFechaDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+            int[] diasEsperados = { 0, 10713, 10713 };
+            Assert.AreEqual(diasEsperados, difFechaDias);
         }
-      
+
         [TestMethod]
         public void TestAnioAC()
         {
-            string[] entrada = { "29", "02", "-1904" };//año bisiesto
-            int aniosEsperados = 3926;
-            int anios = ObtenerAniosAntesDeCristo(entrada);
-            Assert.AreEqual(anios, aniosEsperados);
+            string[] fecha1 = { "10", "01", "0010" };
+            string[] fecha2 = { "15", "01", "0010" };
+            bool fecha1Despues_Cristo = false;
+            bool fecha2Despues_Cristo = false;
+
+            int[] difFechasAnho = TratarFechas.CalcularAnhosDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+            int[] anhosEsperados = { 0, 2012, 2012 };
+            Assert.AreEqual(anhosEsperados, difFechasAnho);
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using ICLUI.ETS_Edades;
-using System;
 
 namespace INNUI.ETS_Edades
 {
     /// <summary>
     /// Clase que contiene métodos intermedios para la gestión de errores y, el paso a las siguientes funciones.
     /// </summary>
-    class Controlador
+    public class Controlador
     {
         /// <summary>
         /// Método intermedio para, cuando vayamos a solicitar las fechas, que la persona introduzca de que época es dicha fecha.
@@ -40,7 +39,7 @@ namespace INNUI.ETS_Edades
             bool noerror = true;
             int codError = -1;
             TratarFechas.PedirFechas(ref fecha1, ref fecha2, ref fecha1Despues_Cristo, ref fecha2Despues_Cristo, ref codError);
-            if(!codError.Equals(-1))
+            if (!codError.Equals(-1))
             {
                 noerror = false;
                 Messages.ShowError(codError);
@@ -54,7 +53,7 @@ namespace INNUI.ETS_Edades
         /// <param name="fecha2">Fecha persona 2</param>
         /// <param name="difAnhos">Diferencia de anhos entre las dos fechas y, cada fecha, con respecto a la actual.</param>
         /// <param name="difDias">Diferencia de días entre las dos fechas y, cada fecha, con respecto a la actual.</param>
-        public static void MostrarResultadoControlador(string []fecha1, string[] fecha2, int[] difAnhos, int[] difDias)
+        public static void MostrarResultadoControlador(string[] fecha1, string[] fecha2, int[] difAnhos, int[] difDias)
         {
             string fecha1_GoodFormat = TratarFechas.Put_Fecha_GoodFormat(fecha1);
             string fecha2_GoodFormat = TratarFechas.Put_Fecha_GoodFormat(fecha2);

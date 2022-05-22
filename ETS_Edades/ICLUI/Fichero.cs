@@ -7,7 +7,7 @@ namespace ICLUI.ETS_Edades
     /// <summary>
     /// Métodos para el tratamiento de ficheros.
     /// </summary>
-    class Fichero
+    public class Fichero
     {
         /// <summary>
         /// Leemos el fichero y guardamos lo que contiene.

@@ -6,7 +6,7 @@ namespace INNUI.ETS_Edades
     /// <summary>
     /// Clase con los métodos para tratar en general las fechas.
     /// </summary>
-    class TratarFechas
+    public class TratarFechas
     {
         /// <summary>
         /// Método que solicita si desea una fecha antes o después de Cristo.
@@ -55,7 +55,7 @@ namespace INNUI.ETS_Edades
         /// <param name="fecha1Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 1)</param>
         /// <param name="fecha2Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 2)</param>
         /// <param name="codError">Número del error que mostraremos, en el caso de que encontremos.</param>
-        public static void PedirFechas(ref string[] fecha1, ref string[] fecha2,ref bool fecha1Despues_Cristo,ref bool fecha2Despues_Cristo,ref int codError)
+        public static void PedirFechas(ref string[] fecha1, ref string[] fecha2, ref bool fecha1Despues_Cristo, ref bool fecha2Despues_Cristo, ref int codError)
         {
             int countPerson = 0;
             while (countPerson < 2)
@@ -95,12 +95,12 @@ namespace INNUI.ETS_Edades
         /// <param name="fecha1Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 1)</param>
         /// <param name="fecha2Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 2)</param>
         /// <returns>Array con todos los datos de diferencias de anhos.</returns>
-        public static int[] CalcularAnhosDif(string[] fecha1, string[] fecha2,bool fecha1Despues_Cristo,bool fecha2Despues_Cristo)
+        public static int[] CalcularAnhosDif(string[] fecha1, string[] fecha2, bool fecha1Despues_Cristo, bool fecha2Despues_Cristo)
         {
-            int [] difFechasAnho = new int[3];
+            int[] difFechasAnho = new int[3];
             if (fecha1Despues_Cristo)
             {
-                if(fecha2Despues_Cristo)
+                if (fecha2Despues_Cristo)
                 {
                     difFechasAnho[0] = Convert.ToInt32(fecha1[2]) - Convert.ToInt32(fecha2[2]);
                     difFechasAnho[1] = DateTime.Now.Year - Convert.ToInt32(fecha1[2]);
@@ -139,7 +139,7 @@ namespace INNUI.ETS_Edades
         /// <param name="fecha1Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 1)</param>
         /// <param name="fecha2Despues_Cristo">Booleano para determinar si una fecha es antes o después de Cristo. (Persona 2)</param>
         /// <returns>Array con todos los datos de diferencias de días.</returns>
-        public static int [] CalcularDiasDif(string[] fecha1,string[] fecha2,bool fecha1Despues_Cristo, bool fecha2Despues_Cristo)
+        public static int[] CalcularDiasDif(string[] fecha1, string[] fecha2, bool fecha1Despues_Cristo, bool fecha2Despues_Cristo)
         {
             int[] difFechaDias = new int[3];
             string fecha1_formatoValido = TratarFechas.Put_Fecha_GoodFormat(fecha1);
@@ -157,7 +157,7 @@ namespace INNUI.ETS_Edades
                 }
                 else
                 {
-                    TimeSpan DiasAdicionales =Convert.ToDateTime(fecha2_formatoValido) - Convert.ToDateTime("01/01/0001");
+                    TimeSpan DiasAdicionales = Convert.ToDateTime(fecha2_formatoValido) - Convert.ToDateTime("01/01/0001");
                     difFechaDias[0] = dif2Fechas.Days + DiasAdicionales.Days;
                     difFechaDias[1] = difFecha1ACT.Days;
                     difFechaDias[2] = dif2Fecha2ACT.Days + DiasAdicionales.Days;
@@ -186,13 +186,13 @@ namespace INNUI.ETS_Edades
         /// </summary>
         /// <param name="fecha">Fechas pasadas</param>
         /// <returns>String con la fecha en el formato correcto.</returns>
-        public static string Put_Fecha_GoodFormat(string[]fecha)
+        public static string Put_Fecha_GoodFormat(string[] fecha)
         {
             string fecha_GoodFormat = "";
-            for(int count = 0; count < 3; count++)
+            for (int count = 0; count < 3; count++)
             {
                 fecha_GoodFormat += fecha[count];
-                if(count <2)
+                if (count < 2)
                 {
                     fecha_GoodFormat += "/";
                 }
