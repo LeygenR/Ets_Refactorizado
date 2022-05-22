@@ -5,64 +5,12 @@ namespace INNUI.ETS_Edades
 {
     class TratarFechas
     {
-        public static string[] LeerFechaNacimientoAC(int contadorMostrar)
-        {
-            //DateTime fechaNacimiento = DateTime.Now;//la inicializo con la fecha actual para que no de errores
-            bool leer = false;//booleano para salir solo cuando lea una fecha válida          
-            string[] Dividir = new string[0];
-            do
-            {
-                Console.Clear();
-                Messages.ShowAskDate(contadorMostrar);
-                string fechaAC = Console.ReadLine();
-                try
-                {
-                    Dividir = fechaAC.Split('/');
-                    if (Dividir.Length == 3)
-                    {
-                        if (int.TryParse(Dividir[2], out int Anioo))
-                        {
-                            if (Anio < 0)
-                            {
-                                if (int.TryParse())
-                                    if (FuncionesAntesDeCristo.AntesDeCristoComprobacion(Dividir))
-                                    {
-                                        leer = true;//fecha correcta salimos
-                                    }
-                                    else
-                                    {
-                                        Messages.ShowError(4);
-                                    }
-                            }
-                            else
-                            {
-                                Messages.ShowError(6);
-                            }
-                        }
-                        else
-                        {
-                            Messages.ShowError(7);
-                        }
-                    }
-                    else
-                    {
-                        Messages.ShowError(7);
-                    }
-                }
-                catch (Exception error)
-                {
-                    Console.WriteLine(error.Message);
-                }
-
-            } while (!leer);
-            return Dividir;
-        }
         /// <summary>
         /// Función que repite en bucle para obtener una fecha válida
         /// </summary>
         /// <param name="contadorMostrar">contador para tener secuencia del pedido de fechas por persona</param>
         /// <returns>Devuelve una fecha de nacimiento correcta(no supere los años actuales y contando los bisiestos cumpliendo el formato correcto)</returns>
-        public static string[] LeerFechaNacimientoDC(int contadorMostrar) //
+        public static string[] LeerFechaNacimiento(int contadorMostrar) //
         {
             DateTime fechaDC = new DateTime();
             bool leer = false;//booleano para salir solo cuando lea una fecha válida
@@ -108,6 +56,87 @@ namespace INNUI.ETS_Edades
             }
             while (!valid);
             return afterChrist;
+        }
+        public static void PedirFechas(ref string[] fecha1, ref string[] fecha2,ref bool fecha1Despues_Cristo,ref bool fecha2Despues_Cristo)
+        {
+            int countPerson = 0;
+            while (countPerson < 2)
+            {
+                if (Controlador.MenuAC_DC(Messages.LANGUAGE))
+                {
+                    if (countPerson.Equals(0))
+                    {
+                        fecha1 = TratarFechas.LeerFechaNacimiento(countPerson);
+                    }
+                    else
+                    {
+                        fecha2 = TratarFechas.LeerFechaNacimiento(countPerson);
+                    }
+                }
+                else
+                {
+                    if (countPerson.Equals(0))
+                    {
+                        fecha1 = TratarFechas.LeerFechaNacimiento(countPerson);
+                    }
+                    else
+                    {
+                        fecha2 = TratarFechas.LeerFechaNacimiento(countPerson);
+                    }
+                }
+                countPerson++;
+            }
+        }
+        public static int[] CalcularAnhosDif(string[] fecha1, string[] fecha2,bool fecha1Despues_Cristo,bool fecha2Despues_Cristo)
+        {
+            int [] difFechasAnho = new int[3];
+            if (fecha1Despues_Cristo)
+            {
+                if(fecha2Despues_Cristo)
+                {
+                    difFechasAnho[0] = Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]);
+                    difFechasAnho[1] = DateTime.Now.Year - Convert.ToInt32(fecha1[3]);
+                    difFechasAnho[2] =  DateTime.Now.Year - Convert.ToInt32(fecha2[3]);
+                }
+                else
+                {
+                    difFechasAnho[0] = 2 * (Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]));
+                    difFechasAnho[2] = 2* (DateTime.Now.Year - Convert.ToInt32(fecha2[3]));
+                }
+            }
+            else
+            {
+                difFechasAnho[0] = 2 * (Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]));
+                difFechasAnho[1] = 2 * (DateTime.Now.Year - Convert.ToInt32(fecha1[3]));
+            }
+
+            return difFechasAnho;
+        }
+        public static int [] CalcularDiasDif(string fecha1,string fecha2,bool fecha1Despues_Cristo, bool fecha2Despues_Cristo)
+        {
+            int[] difFechasAnho = new int[3];
+            TimeSpan difFechas = Convert.ToDateTime(fecha1) - Convert.ToDateTime(fecha2);
+            if (fecha1Despues_Cristo)
+            {
+                if (fecha2Despues_Cristo)
+                {
+                    difFechasAnho[0] = Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]);
+                    difFechasAnho[1] = DateTime.Now.Year - Convert.ToInt32(fecha1[3]);
+                    difFechasAnho[2] = DateTime.Now.Year - Convert.ToInt32(fecha2[3]);
+                }
+                else
+                {
+                    difFechasAnho[0] = 2 * (Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]));
+                    difFechasAnho[2] = 2 * (DateTime.Now.Year - Convert.ToInt32(fecha2[3]));
+                }
+            }
+            else
+            {
+                difFechasAnho[0] = 2 * (Convert.ToInt32(fecha1[3]) - Convert.ToInt32(fecha2[3]));
+                difFechasAnho[1] = 2 * (DateTime.Now.Year - Convert.ToInt32(fecha1[3]));
+            }
+
+            return difFechasAnho;
         }
     }
 }
