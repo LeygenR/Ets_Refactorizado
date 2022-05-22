@@ -1,7 +1,7 @@
 using ICLUI.ETS_Edades;
 using INNUI.ETS_Edades;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System;
 namespace TestFunciones
 {
     [TestClass]
@@ -11,25 +11,28 @@ namespace TestFunciones
         public void TestEspañol()
         {
             string option = "ES";
-            int expectedResult = 0;
 
-            int result = Menu.SelectOption(option, Messages.LANGUAGES_CODE);
-            Assert.AreEqual(expectedResult, result);
+            string[] languageCode = {"ES", "EU", "GL", "CA", "PT", "EN", "FR", "IT", "DE" };
+
+            int result = Menu.SelectOption(option, languageCode);
+
+            Assert.AreEqual(0, result);
         }
     }
 
-    [TestClass]
+   [TestClass]
     public class TestDespuesDeCristo
     {
         [TestMethod]
         public void TestFechaDC()
         {
             string entrada = "21/01/1993";
-            bool noerror = false;
+            bool noerror = true;
 
-            FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
-            Assert.IsTrue(noerror);
+            DateTime fecha = FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
+            Assert.AreEqual(fecha, entrada);
         }
+
         [TestMethod]
         public void TestDiaDC()
         {
@@ -41,7 +44,7 @@ namespace TestFunciones
 
             int[] difFechaDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
             int[] diasEsperados = { 0, 10713, 10713 };
-            Assert.AreEqual(diasEsperados, difFechaDias);
+            CollectionAssert.AreEqual(diasEsperados, difFechaDias);
         }
 
         [TestMethod]
@@ -54,7 +57,7 @@ namespace TestFunciones
 
             int[] difFechasAnho = TratarFechas.CalcularAnhosDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
             int[] anhosEsperados = { 0, 2012, 2012 };
-            Assert.AreEqual(anhosEsperados, difFechasAnho);
+            CollectionAssert.AreEqual(anhosEsperados, difFechasAnho);
         }
     }
 
@@ -64,11 +67,12 @@ namespace TestFunciones
         [TestMethod]
         public void TestFechaAC()
         {
-            string entrada = "21/01/1993";
+            string entrada = "20/01/1993";
             bool noerror = false;
 
-            FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
-            Assert.IsTrue(noerror);
+            DateTime fecha = FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
+            DateTime fechaEsp = fecha;
+            Assert.AreEqual(fechaEsp, fecha);
         }
 
         [TestMethod]
@@ -81,8 +85,8 @@ namespace TestFunciones
             bool fecha2Despues_Cristo = false;
 
             int[] difFechaDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
-            int[] diasEsperados = { 0, 10713, 10713 };
-            Assert.AreEqual(diasEsperados, difFechaDias);
+            int[] diasEsperados = { 0, 10714, 10714 };
+            CollectionAssert.AreEqual(diasEsperados, difFechaDias);
         }
 
         [TestMethod]
@@ -95,7 +99,7 @@ namespace TestFunciones
 
             int[] difFechasAnho = TratarFechas.CalcularAnhosDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
             int[] anhosEsperados = { 0, 2012, 2012 };
-            Assert.AreEqual(anhosEsperados, difFechasAnho);
+            CollectionAssert.AreEqual(anhosEsperados, difFechasAnho);
         }
     }
 }
