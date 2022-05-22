@@ -2,8 +2,16 @@
 
 namespace ICLUI.ETS_Edades
 {
+    /// <summary>
+    /// Clase con los métodos de mostrado y opciones de idiomas.
+    /// </summary>
     class Menu
     {
+        /// <summary>
+        /// Mostrado del menú de idiomas
+        /// </summary>
+        /// <param name="languageCode">Código referente para solicitar el idioma</param>
+        /// <param name="language">Los idioma</param>
         public static void ShowMenu(string[] languageCode, string[] language)
         {
             Console.WriteLine("---------------------------------------");
@@ -16,8 +24,13 @@ namespace ICLUI.ETS_Edades
             }
             Console.WriteLine("---------------------------------------");
             Console.WriteLine("---------------------------------------");
+            _ = Console.ReadKey(true);
         }
-
+        /// <summary>
+        /// Método para buscar la posición del idioma en el array.
+        /// </summary>
+        /// <param name="languageCode">Código referente para solicitar el idioma</param>
+        /// <returns>Posición del idioma en el array</returns>
         public static int SelectOption(string[] languageCode)
         {
             int posIdioma;
@@ -31,10 +44,6 @@ namespace ICLUI.ETS_Edades
             }
             return (posIdioma);
         }
-
-
-
     }
-
 }
 

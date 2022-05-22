@@ -15,17 +15,19 @@ namespace ETS_Edades
                 bool fecha2Despues_Cristo = true;
                 string[] fecha1 = new string[3];
                 string[] fecha2 = new string[3];
-                TratarFechas.PedirFechas(ref fecha1, ref fecha2,ref fecha1Despues_Cristo,ref fecha2Despues_Cristo);
-                int [] difAnhos = TratarFechas.CalcularAnhosDif(fecha1,fecha2,fecha1Despues_Cristo,fecha2Despues_Cristo);
-                int difDiasFecha1_fecha2 = TratarFechas.CalcularDiasDifFechas(fecha1, fecha2);
-                int difDiasFecha1_Actual = TratarFechas.CalcularDiasDif(fecha1, fecha1Despues_Cristo);
-                int difDiasFecha2_Actual = TratarFechas.CalcularDiasDif(fecha2, fecha2Despues_Cristo);
+                if (Controlador.PedirFechasControlador(ref fecha1, ref fecha2, ref fecha1Despues_Cristo, ref fecha2Despues_Cristo))
+                {
+                    int[] difAnhos = TratarFechas.CalcularAnhosDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+                    int[] difDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
+                    Controlador.MostrarResultadoControlador(fecha1, fecha2, difAnhos, difDias);
+                }
             }
             else
             {
                 //Error
             }
             
+            /*
             diasPersona1 = FuncionesDespuesCristo.ObtenerDias(fechaPersona1);
 
             if (diasPersona1 <= 0)
@@ -75,6 +77,8 @@ namespace ETS_Edades
                 Controlador.MostrarDiferenciaEdades(diasDiferencias1, aniosDiferencias1, diasPersona2, aniosPersona2);
                 Controlador.MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasDiferencias2, aniosDiferencias2);
                 Controlador.MostrarDiferenciaEdades(diasPersona1, aniosPersona1, diasPersona2, aniosPersona2);
+            */
         }
+            
     }
 }

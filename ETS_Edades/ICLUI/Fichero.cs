@@ -4,8 +4,16 @@ using System.Text;
 
 namespace ICLUI.ETS_Edades
 {
+    /// <summary>
+    /// Métodos para el tratamiento de ficheros.
+    /// </summary>
     class Fichero
     {
+        /// <summary>
+        /// Leemos el fichero y guardamos lo que contiene.
+        /// </summary>
+        /// <param name="fichero">Fichero con información</param>
+        /// <returns>Los idiomas</returns>
         public static string[] ReadingFile(string fichero)
         {
             string[] textFile = new string[0];
@@ -25,7 +33,6 @@ namespace ICLUI.ETS_Edades
                 Console.ReadKey(true);
                 textFile = null;
             }
-
             return textFile;
         }
     }

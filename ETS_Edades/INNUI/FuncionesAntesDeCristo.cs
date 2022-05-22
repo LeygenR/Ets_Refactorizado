@@ -1,7 +1,11 @@
 ﻿using System;
+using ICLUI.ETS_Edades;
 
 namespace INNUI.ETS_Edades
 {
+    /// <summary>
+    /// Clase con los métodos para el tratamiento de fechas anteriores a Cristo.
+    /// </summary>
     public class FuncionesAntesDeCristo
     {
         public static bool AntesDeCristoComprobacion(string[] dividir)
@@ -79,28 +83,6 @@ namespace INNUI.ETS_Edades
             return comprobacionFecha;
         }
 
-        public static int ObtenerAniosAntesDeCristo(string[] fechaDada)
-        {
-            char[] separador = { '/', ' ' };
-            string[] anioActualDividido = new string[0];
-            int aniosDiferencias = 0;
-            try
-            {
-                int convertirAnioPersonas = Int32.Parse(fechaDada[2]);
-                anioActualDividido = fechaDada.Split(separador);
-                int obtenerAnioActual = Int32.Parse(anioActualDividido[2]);
-
-                aniosDiferencias = obtenerAnioActual - convertirAnioPersonas;
-
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-
-            return aniosDiferencias;
-        }
-
         public static int ObtenerDiasAntesDeCristo(int aniosDiferencias, string[] fechaAntesCristoPersona)
         {
             char[] Separador = { '/', ' ' };
@@ -123,10 +105,64 @@ namespace INNUI.ETS_Edades
                 {
                     sumaDias = sumaDias + 1;
                 }
-
             }
-
             return sumaDias;
+        }
+        /// <summary>
+        /// Método para leer las fechas que sean antes de Cristo.
+        /// </summary>
+        /// <param name="contadorMostrar"></param>
+        /// <param name="codError">Si hay algún error, devolvemos por referencia el error y lo mostramos.</param>
+        /// <returns></returns>
+        public static string[] LeerFechaNacimientoAC(int contadorMostrar, ref int codError)
+        {
+            bool leer = false;//booleano para salir solo cuando lea una fecha válida          
+            string[] Dividir = new string[0];
+            do
+            {
+                Console.Clear();
+                Messages.ShowAskDate(contadorMostrar);
+                string fechaAC = Console.ReadLine();
+                try
+                {
+                    Dividir = fechaAC.Split('/');
+                    if (Dividir.Length == 3)
+                    {
+                        if (int.TryParse(Dividir[2], out int Anio))
+                        {
+                            if (Anio > 0)
+                            {
+                                if (FuncionesAntesDeCristo.AntesDeCristoComprobacion(Dividir))
+                                {
+                                    leer = true;//fecha correcta salimos
+                                }
+                                else
+                                {
+                                    codError = 4;
+                                }
+                            }
+                            else
+                            {
+                                codError = 6;
+                            }
+                        }
+                        else
+                        {
+                            codError = 7;
+                        }
+                    }
+                    else
+                    {
+                        codError = 7;
+                    }
+                }
+                catch (Exception)
+                {
+                    codError = 7;
+                }
+
+            } while (!leer);
+            return Dividir;
         }
     }
 }
