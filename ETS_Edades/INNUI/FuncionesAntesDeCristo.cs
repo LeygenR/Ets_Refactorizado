@@ -8,6 +8,11 @@ namespace INNUI.ETS_Edades
     /// </summary>
     public class FuncionesAntesDeCristo
     {
+        /// <summary>
+        /// Valida que la fecha antes de Cristo sea correcta.
+        /// </summary>
+        /// <param name="dividir">Fecha dividida para comprobarla por partes.</param>
+        /// <returns>Booleano para la gestión de errores y, que la fecha sea correcta o incorrecta.</returns>
         public static bool AntesDeCristoComprobacion(string[] dividir)
         {
             bool comprobacionFecha = false;
@@ -82,38 +87,12 @@ namespace INNUI.ETS_Edades
             }
             return comprobacionFecha;
         }
-
-        public static int ObtenerDiasAntesDeCristo(int aniosDiferencias, string[] fechaAntesCristoPersona)
-        {
-            char[] Separador = { '/', ' ' };
-            DateTime fechaActual = DateTime.Now;
-            string[] anioActualDividido = new string[0];
-            string fecha = fechaActual.ToString();
-            anioActualDividido = fecha.Split(Separador);
-            int obtenerAnioActual = Int32.Parse(anioActualDividido[2]);
-            int obtenerMesActual = Int32.Parse(anioActualDividido[1]);
-            int convertirAnioPersonas = Int32.Parse(fechaAntesCristoPersona[2]);
-            int convertirMesPersonas = Int32.Parse(fechaAntesCristoPersona[1]);
-
-            int sumaDias = 0;
-
-            for (int contadorDias = convertirAnioPersonas; contadorDias < obtenerAnioActual; contadorDias++)
-            {
-                sumaDias = sumaDias + 365;
-
-                if ((contadorDias % 4 == 0 && contadorDias % 100 != 0 || contadorDias % 400 == 0))
-                {
-                    sumaDias = sumaDias + 1;
-                }
-            }
-            return sumaDias;
-        }
         /// <summary>
         /// Método para leer las fechas que sean antes de Cristo.
         /// </summary>
-        /// <param name="contadorMostrar"></param>
+        /// <param name="contadorMostrar">Contador para determinar el número de la persona por la que vamos.</param>
         /// <param name="codError">Si hay algún error, devolvemos por referencia el error y lo mostramos.</param>
-        /// <returns></returns>
+        /// <returns>Fecha de nacimiento antes de Cristo dividida.</returns>
         public static string[] LeerFechaNacimientoAC(int contadorMostrar, ref int codError)
         {
             bool leer = false;//booleano para salir solo cuando lea una fecha válida          

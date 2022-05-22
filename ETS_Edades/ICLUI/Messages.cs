@@ -42,16 +42,6 @@ namespace ICLUI.ETS_Edades
             _ = Console.ReadKey(true);
         }
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="numMessage"></param>
-        public static void ShowMessage(int numMessage)
-        {
-            string[] texts_language = FILEDATA[numMessage].Split(',');
-            Console.WriteLine(texts_language[LANGUAGE]);
-            _ = Console.ReadKey(true);
-        }
-        /// <summary>
         /// Mostrado final con las fechas, diferencias de días y años.
         /// </summary>
         /// <param name="fecha1">Fecha persona 1.</param>

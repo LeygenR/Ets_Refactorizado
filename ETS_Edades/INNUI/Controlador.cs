@@ -12,7 +12,7 @@ namespace INNUI.ETS_Edades
         /// Método intermedio para, cuando vayamos a solicitar las fechas, que la persona introduzca de que época es dicha fecha.
         /// </summary>
         /// <param name="language">Idioma usado</param>
-        /// <returns>Boleano de control. Gestionar la época de la fecha y sus posibles errores</returns>
+        /// <returns>Booleano de control. Gestionar la época de la fecha y sus posibles errores</returns>
         public static bool IsAfterChristController(int language)
         {
             string[] texts_antesCristo = Messages.FILEDATA[14].Split(',');
