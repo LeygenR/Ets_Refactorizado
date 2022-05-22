@@ -113,7 +113,7 @@ namespace TestFunciones
             error = AntesDeCristoComprobacion(entrada);
             Assert.IsTrue(error);
         }
-        /*
+        
         [TestMethod]
         public void TestDia1()
         {
@@ -131,7 +131,7 @@ namespace TestFunciones
             int diasEsperados = 1434336;
             int dias = ObtenerDiasAntesDeCristo(aniosdiferencia, entrada);
             Assert.AreEqual(dias, diasEsperados);
-        }*/
+        }
 
         [TestMethod]
         public void TestAnio1()
