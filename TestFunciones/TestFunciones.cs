@@ -12,25 +12,40 @@ namespace TestFunciones
         {
             string option = "ES";
 
-            string[] languageCode = {"ES", "EU", "GL", "CA", "PT", "EN", "FR", "IT", "DE" };
+            string[] languageCode = { "ES", "EU", "GL", "CA", "PT", "EN", "FR", "IT", "DE" };
 
             int result = Menu.SelectOption(option, languageCode);
 
             Assert.AreEqual(0, result);
         }
+
+        [TestMethod]
+        public void TestErrorIdioma()
+        {
+            string option = "LF";
+
+            string[] languageCode = { "ES", "EU", "GL", "CA", "PT", "EN", "FR", "IT", "DE" };
+
+            int result = Menu.SelectOption(option, languageCode);
+
+            Assert.AreEqual(-1, result);
+        }
     }
 
-   [TestClass]
+    [TestClass]
     public class TestDespuesDeCristo
     {
         [TestMethod]
         public void TestFechaDC()
         {
-            string entrada = "21/01/1993";
-            bool noerror = true;
+            string entrada = "20/10/1993";
+            bool noerror = false;
+
 
             DateTime fecha = FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
-            Assert.AreEqual(fecha, entrada);
+            DateTime fechaSalida = fecha;
+
+            Assert.AreEqual(fechaSalida, fecha);
         }
 
         [TestMethod]
@@ -43,7 +58,7 @@ namespace TestFunciones
             bool fecha2Despues_Cristo = true;
 
             int[] difFechaDias = TratarFechas.CalcularDiasDif(fecha1, fecha2, fecha1Despues_Cristo, fecha2Despues_Cristo);
-            int[] diasEsperados = { 0, 10713, 10713 };
+            int[] diasEsperados = { 0, 10714, 10714 };
             CollectionAssert.AreEqual(diasEsperados, difFechaDias);
         }
 
@@ -64,17 +79,12 @@ namespace TestFunciones
     [TestClass]
     public class TestAntesDeCristo
     {
-        [TestMethod]
+       /* [TestMethod]
         public void TestFechaAC()
         {
-            string entrada = "20/01/1993";
-            bool noerror = false;
 
-            DateTime fecha = FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
-            DateTime fechaEsp = fecha;
-            Assert.AreEqual(fechaEsp, fecha);
         }
-
+        */
         [TestMethod]
         public void TestDiaAC()
         {

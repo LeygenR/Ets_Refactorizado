@@ -48,7 +48,7 @@ namespace INNUI.ETS_Edades
                 }
                 else
                 {
-                    noerror = true;//fecha correcta salimos
+                    noerror = true; //fecha correcta salimos
                 }
             }
             catch (Exception errorConversion)
