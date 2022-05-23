@@ -22,13 +22,13 @@ namespace TestFunciones
         [TestMethod]
         public void TestErrorIdioma()
         {
-            string option = "LF";
+            string option = "";
 
             string[] languageCode = { "ES", "EU", "GL", "CA", "PT", "EN", "FR", "IT", "DE" };
 
             int result = Menu.SelectOption(option, languageCode);
 
-            Assert.AreEqual(-1, result);
+            Assert.AreEqual((-1), result);
         }
     }
 
@@ -43,9 +43,8 @@ namespace TestFunciones
 
 
             DateTime fecha = FuncionesDespuesCristo.ComprobarFecha(entrada, ref noerror);
-            DateTime fechaSalida = fecha;
 
-            Assert.AreEqual(fechaSalida, fecha);
+            Assert.IsTrue(noerror);
         }
 
         [TestMethod]
@@ -79,12 +78,6 @@ namespace TestFunciones
     [TestClass]
     public class TestAntesDeCristo
     {
-       /* [TestMethod]
-        public void TestFechaAC()
-        {
-
-        }
-        */
         [TestMethod]
         public void TestDiaAC()
         {
